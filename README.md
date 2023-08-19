@@ -11,6 +11,7 @@ Após clonar o repositório rode os Seguintes comandos
   cd calculadora
   npm start
 ```
+![Captura de tela 2023-08-19 203708](https://github.com/Lukas656/Calculator-React/assets/72577273/d357e9f2-626a-4995-817f-211b5647c341)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
