@@ -1,9 +1,9 @@
 import React from "react";
-import './Button.css'
+import './Display.css'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props)=>{
     return(
-        <button className="button">{props.label }</button>
+    <div className="display">{props.value}</div>
     )
 }
