@@ -24,11 +24,11 @@ export default class Calculator extends Component {
         this.addDigit = this.addDigit.bind(this)
     }
 
-    clearMemory = () => {
+    clearMemory() {
         this.setState({ ...initialState })
     };
 
-    setOperation = (operation) => {
+    setOperation(operation) {
         if (this.state.current === 0) {
             this.setState({ operation, current: 1, clearDisplay: true })
         } else {
@@ -37,15 +37,16 @@ export default class Calculator extends Component {
 
             const values = [...this.state.values]
             try {
-                values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
-            } catch (e) {
+                // Evite usar eval para segurança e desempenho
+                values[0] = Function(`'use strict'; return ${values[0]} ${currentOperation} ${values[1]}`)()
+            } catch (error) {
                 values[0] = this.state.values[0]
             }
 
             values[1] = 0
 
             this.setState({
-                displayValue: values[0],
+                displayValue: String(values[0]),
                 operation: equals ? null : operation,
                 current: equals ? 0 : 1,
                 clearDisplay: !equals,
@@ -54,7 +55,7 @@ export default class Calculator extends Component {
         }
     };
 
-    addDigit = (n) => {
+    addDigit(n) {
         if (n === '.' && this.state.displayValue.includes('.')) {
             return
         }
@@ -101,4 +102,3 @@ export default class Calculator extends Component {
         )
     }
 }
-
